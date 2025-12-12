@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami</title>
+    <style>
+        /* Sama seperti team.html */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('quietbg.png');  /* sama dengan halaman lain */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.65);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* Kartu transparan seperti di team.html */
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            padding: 32px 40px;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            text-align: center;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        }
+
+        p, li {
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 18px;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.65);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tentang Kami</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="team.html">Our Team</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Visi</h2>
+            <p>
+                Menjadi ruang aman terpercaya bagi mahasiswa untuk bercerita, 
+                menemukan ketenangan, dan merasa didengar tanpa stigma.
+            </p>
+
+            <h2>Misi</h2>
+            <ul>
+                <li>Menyediakan tempat curhat yang ramah, aman, dan anonim bagi setiap mahasiswa.</li>
+                <li>Mendengarkan dengan empati, tanpa menghakimi, serta memberikan respons yang menenangkan.</li>
+                <li>Menjaga kerahasiaan sebagai prinsip utama dalam setiap percakapan.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Our Site. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('quietbg.png'); /* Your image here */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1;
+    }
+    
+    body {
+        position: relative;
+        background-color: rgba(244, 244, 244, 0.9); /* Semi-transparent overlay */
+        backdrop-filter: blur(2px); /* Slight backdrop blur for content */
+    }
+</style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk to us!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; padding: 0; background-color: #f4f4f4; 
+        }
+        header { background-color: rgba(0, 0, 0, 0.65); color: white; padding: 20px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: 500; }
+        main,
+        .form-section,
+        .team-member {
+        background: rgba(255, 255, 255, 0.12);  /* transparent white */
+        backdrop-filter: blur(16px);            /* glass blur */
+        -webkit-backdrop-filter: blur(16px);    /* Safari support */
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        border-radius: 16px; }
+        .team-member {
+        text-align: center;          /* Center text horizontally */
+        padding: 24px 32px;          /* More space on left/right */
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}       .form-section {
+        text-align: center;
+        padding: 32px 40px;
+        max-width: 600px;          /* adjust: 500–700px depending on your taste */
+        margin: 0 auto 40px;       /* centers the card and adds bottom space */
+        padding: 24px 32px;
+}
+
+        .form-group { margin-bottom: 15px; text-align: center; }
+        input[type="text"], input[type="number"] { width: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+        button { background: #333; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-family: inherit; font-weight: 500; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .avatar { width: 120px; height: 120px; background: #ddd; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 40px; overflow: hidden; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .details-btn { background: #007bff; margin-top: 10px; }
+        .details-btn:hover { background: #0056b3; }
+        footer { background-color: #ebdbdb00; color: white; text-align: center; padding: 10px; margin-top: 40px; font-weight: 400; }
+
+        /* Modal Styles */
+        .modal { 
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; 
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); 
+        }
+.modal-content { 
+    background: white; 
+    margin: 1% auto; /* Increased top margin from 5% to 10% */
+    padding: 0; 
+    width: 90%; 
+    max-width: 800px; 
+    max-height: 100vh; /* Limit height to prevent overflow */
+    border-radius: 12px; 
+    overflow: hidden; 
+    position: relative; 
+    animation: slideIn 0.3s ease-ou
+}
+.modal-img { 
+    width: 100%; 
+    height: 500px; /* Bigger banner height */
+    object-fit: cover; 
+}
+.contact-now-btn { 
+    background: #28a745; 
+    width: 100%; 
+    padding: 18px; /* Slightly bigger button */
+    font-size: 18px; /* Bigger text */
+    margin: 0; /* Remove top margin */
+    border: none; 
+    border-radius: 0 0 8px 8px; /* Rounded bottom only */
+    cursor: pointer; 
+}
+.contact-now-btn:hover { background: #218838; }
+.unavailable .contact-now-btn { background: #6c757d; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Talk To Us</h1>
+        <nav>
+            <a href="index.html">Welcome</a>
+            <a href="about.html">About Us</a>
+            <a href="team.html">Our Team</a>
+        </nav>
+    </header>
+    <main>
+        <div class="form-section">
+            <h2>Need a call?</h2>
+            <form id="biodataForm">
+                <div class="form-group">
+                    <label>Name: <input type="text" id="name" required></label>
+                </div>
+                <div class="form-group">
+                    <label>Age: <input type="number" id="age" min="13" max="100" required></label>
+                </div>
+                <div class="form-group">
+                    <label>Hobbies/Interests: <input type="text" id="hobbies" placeholder="e.g., anime, coding, sports" required></label>
+                </div>
+                <button type="submit">Submit & Match</button>
+            </form>
+            <p id="matchResult" style="margin-top: 15px; font-weight: 600;"></p>
+        </div>
+
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="avatar">
+                    <img src="alex.jpg" alt="Alex Chen" onerror="this.parentNode.innerHTML='👨‍💻'">
+                </div>
+                <h3>Alex Chen</h3>
+                <p><strong>Expertise:</strong> Anime & Fiction Novels</p>
+                <p><strong>Availability:</strong> 8:00 AM - 12:00 PM</p>
+                <p><em>Current time: <span id="time1"></span></em></p>
+                <button class="details-btn" onclick="openModal('alex')">Show details</button>
+            </div>
+            
+            <div class="team-member">
+                <div class="avatar">
+                    <img src="sarah.jpg" alt="Sarah Kim" onerror="this.parentNode.innerHTML='🎨'">
+                </div>
+                <h3>Sarah Kim</h3>
+                <p><strong>Expertise:</strong> Gaming & Tech Reviews</p>
+                <p><strong>Availability:</strong> 2:00 PM - 6:00 PM</p>
+                <p><em>Current time: <span id="time2"></span></em></p>
+                <button class="details-btn" id="sarahDetailsBtn" onclick="openModal('sarah')">Show details</button>
+            </div>
+            
+            <div class="team-member">
+                <div class="avatar">
+                    <img src="mike.jpg" alt="Mike Rivera" onerror="this.parentNode.innerHTML='📚'">
+                </div>
+                <h3>Mike Rivera</h3>
+                <p><strong>Expertise:</strong> Sports & Outdoor Activities</p>
+                <p><strong>Availability:</strong> 7:00 PM - 10:00 PM</p>
+                <p><em>Current time: <span id="time3"></span></em></p>
+                <button class="details-btn" id="mikeDetailsBtn" onclick="openModal('mike')">Show details</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Our Site. All rights reserved.
+    </footer>
+
+<!-- Alex Modal - SIMPLIFIED -->
+<div id="alexModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('alex')">&times;</span>
+        <img src="alex.jpg" alt="Alex Chen" class="modal-img" onerror="this.src='https://via.placeholder.com/400x250/ddd?text=Alex'">
+        <button class="contact-now-btn available" onclick="contact('Alex')">Contact Now</button>
+    </div>
+</div>
+
+<!-- Sarah Modal - SIMPLIFIED -->
+<div id="sarahModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('sarah')">&times;</span>
+        <img src="sarah.jpg" alt="Sarah Kim" class="modal-img" onerror="this.src='https://via.placeholder.com/400x250/ddd?text=Sarah'">
+        <button class="contact-now-btn" id="sarahContactBtn" onclick="contact('Sarah')">Contact Now</button>
+    </div>
+</div>
+
+<!-- Mike Modal - SIMPLIFIED -->
+<div id="mikeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('mike')">&times;</span>
+        <img src="mike.jpg" alt="Mike Rivera" class="modal-img" onerror="this.src='https://via.placeholder.com/400x250/ddd?text=Mike'">
+        <button class="contact-now-btn" id="mikeContactBtn" onclick="contact('Mike')">Contact Now</button>
+    </div>
+</div>
+
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal(person) {
+            document.getElementById(person + 'Modal').style.display = 'block';
+        }
+        function closeModal(person) {
+            document.getElementById(person + 'Modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Update availability
+        function updateAvailability() {
+            const now = new Date();
+            const hour = now.getHours();
+            
+            // Alex: 8-12
+            document.getElementById('time1').textContent = `${hour}:00`;
+            const alexModalBtn = document.querySelector('#alexModal .contact-now-btn');
+            if (hour >= 8 && hour < 12) {
+                document.getElementById('time1').innerHTML += ' <span style="color:#28a745;">(Available)</span>';
+                alexModalBtn.classList.add('available');
+                alexModalBtn.disabled = false;
+            } else {
+                document.getElementById('time1').innerHTML += ' <span style="color:#6c757d;">(Unavailable)</span>';
+                alexModalBtn.classList.remove('available');
+                alexModalBtn.disabled = true;
+            }
+            
+            // Sarah: 14-18
+            document.getElementById('time2').textContent = `${hour}:00`;
+            const sarahBtn = document.getElementById('sarahContactBtn');
+            if (hour >= 14 && hour < 18) {
+                document.getElementById('time2').innerHTML += ' <span style="color:#28a745;">(Available)</span>';
+                sarahBtn.classList.add('available');
+                sarahBtn.disabled = false;
+                document.getElementById('sarahDetailsBtn').style.opacity = '1';
+            } else {
+                document.getElementById('time2').innerHTML += ' <span style="color:#6c757d;">(Unavailable)</span>';
+                sarahBtn.classList.remove('available');
+                sarahBtn.disabled = true;
+                document.getElementById('sarahDetailsBtn').style.opacity = '0.6';
+            }
+            
+            // Mike: 19-22
+            document.getElementById('time3').textContent = `${hour}:00`;
+            const mikeBtn = document.getElementById('mikeContactBtn');
+            if (hour >= 19 && hour < 22) {
+                document.getElementById('time3').innerHTML += ' <span style="color:#28a745;">(Available)</span>';
+                mikeBtn.classList.add('available');
+                mikeBtn.disabled = false;
+                document.getElementById('mikeDetailsBtn').style.opacity = '1';
+            } else {
+                document.getElementById('time3').innerHTML += ' <span style="color:#6c757d;">(Unavailable)</span>';
+                mikeBtn.classList.remove('available');
+                mikeBtn.disabled = true;
+                document.getElementById('mikeDetailsBtn').style.opacity = '0.6';
+            }
+        }
+
+        // Form submission (unchanged)
+        document.getElementById('biodataForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const hobbies = document.getElementById('hobbies').value.toLowerCase();
+            
+            let match = '';
+            if (hobbies.includes('anime') || hobbies.includes('novel') || hobbies.includes('fiction')) {
+                match = `${name}, we'd connect you with Alex (Anime expert)!`;
+            } else if (hobbies.includes('game') || hobbies.includes('tech')) {
+                match = `${name}, Sarah (Gaming expert) would love to chat!`;
+            } else if (hobbies.includes('sport') || hobbies.includes('outdoor')) {
+                match = `${name}, Mike (Sports expert) is your match!`;
+            } else {
+                match = `${name}, we'll find the perfect team member for you!`;
+            }
+            document.getElementById('matchResult').textContent = match;
+        });
+
+        function contact(person) {
+            alert(`Connecting you to ${person}...\nEmail: ${person.toLowerCase()}@oursite.com\n📞 Ready to chat about your interests!`);
+        }
+
+        updateAvailability();
+        setInterval(updateAvailability, 60000);
+    </script>
+</body>
+</html>
