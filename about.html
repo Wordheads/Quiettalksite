@@ -5,74 +5,200 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami</title>
     <style>
-        /* Sama seperti team.html */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('quietbg.png');  /* sama dengan halaman lain */
+        
+        /* Identical background system */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('quietbg.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            color: #fff;
+            background-repeat: no-repeat;
+            z-index: -1;
         }
-
-        header {
-            background-color: rgba(0, 0, 0, 0.65);
-            color: white;
-            padding: 20px;
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background-color: rgba(244, 244, 244, 0.9);
+            backdrop-filter: blur(2px);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-size: clamp(14px, 2.5vw, 16px);
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header { 
+            background-color: rgba(0, 0, 0, 0.65); 
+            color: white; 
+            padding: clamp(1rem, 4vw, 1.5rem); 
+            text-align: center; 
+        }
+        
+        header h1 {
+            margin: 0 0 clamp(0.5rem, 2vw, 1rem) 0;
+            font-size: clamp(1.8rem, 7vw, 3rem);
+            font-weight: 600;
+        }
+        
+        nav { 
+            margin-top: clamp(0.5rem, 2vw, 1rem);
+        }
+        
+        nav a { 
+            color: white; 
+            margin: 0 clamp(0.75rem, 2.5vw, 1.25rem); 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+            transition: opacity 0.3s ease;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(2rem, 6vw, 4rem);
+            min-height: calc(100vh - clamp(120px, 12vw, 200px));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        /* Kartu transparan seperti di team.html */
+        
         .card {
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            padding: 32px 40px;
+            box-shadow: 0 clamp(8px, 2vw, 16px) clamp(20px, 5vw, 40px) rgba(0, 0, 0, 0.15);
+            border-radius: clamp(16px, 4vw, 24px);
+            padding: clamp(3rem, 8vw, 5rem) clamp(3rem, 8vw, 5rem);
+            max-width: clamp(500px, 85vw, 900px);
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-
-        h1, h2 {
-            margin-top: 0;
-            text-align: center;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #28a745, #007bff);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
         }
-
-        p, li {
-            color: #f5f5f5;
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+        }
+        
+        .card h2 {
+            margin: clamp(2rem, 6vw, 3rem) 0 clamp(1.5rem, 4vw, 2.5rem) 0;
+            font-size: clamp(1.6rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+        
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #007bff, #28a745);
+            border-radius: 2px;
+        }
+        
+        .card p {
+            margin: 0 0 clamp(1.5rem, 4vw, 2.5rem) 0;
+            font-size: clamp(1rem, 2.8vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            line-height: 1.8;
+        }
+        
+        .card ul {
+            padding-left: clamp(1.5rem, 4vw, 2rem);
+            margin: clamp(1rem, 3vw, 1.5rem) 0;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.75rem, 2vw, 1rem);
+        }
+        
+        .card li {
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
             line-height: 1.6;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        footer { 
+            background-color: rgba(0, 0, 0, 0.1); 
+            color: rgba(255, 255, 255, 0.8); 
+            text-align: center; 
+            padding: clamp(1rem, 3vw, 1.5rem); 
+            margin-top: clamp(3rem, 8vw, 6rem); 
+            font-weight: 400;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            backdrop-filter: blur(8px);
+            width: 100%;
         }
 
-        ul {
-            padding-left: 18px;
-            margin-top: 10px;
-        }
-
-        footer {
-            background-color: rgba(0, 0, 0, 0.65);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: 40px;
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            main {
+                padding: clamp(1.5rem, 8vw, 2.5rem);
+            }
+            
+            .card {
+                padding: clamp(2rem, 10vw, 3rem) clamp(1.5rem, 8vw, 2.5rem);
+                margin: 0 clamp(1rem, 5vw, 2rem);
+            }
+            
+            .card ul {
+                padding-left: clamp(1rem, 5vw, 1.5rem);
+            }
         }
     </style>
 </head>
@@ -80,7 +206,7 @@
     <header>
         <h1>Tentang Kami</h1>
         <nav>
-            <a href="index.html">Home</a>
+            <a href="index.html">Welcome</a>
             <a href="about.html">About Us</a>
             <a href="team.html">Our Team</a>
         </nav>
